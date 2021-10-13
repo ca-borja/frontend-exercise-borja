@@ -1,0 +1,13 @@
+<h5 class="mb-5 pb-3 border-bottom">Employees
+  <button type="button" class="btn btn-primary btn-sm float-right" routerLink="/employee/add">Add employee</button>
+</h5>
+
+<div class="media mb-3" *ngFor="let employee of employees">
+  <div class="employee-img mr-3"></div>
+  <div class="media-body">
+    <button type="button" class="btn btn-outline-danger btn-sm float-right">Delete</button>
+    <h5 class="mt-0">{{employee.firstName}} {{employee.lastName}}</h5>
+    <div class="employee-email">Email: {{employee.email}}</div>
+    <div class="employee-id">ID: {{employee.id}}</div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<h5 class="mb-5 pb-3 border-bottom">Add employee</h5>
+
+<form [formGroup]="addEmployeeForm" #ngForm="ngForm" (ngSubmit)="onSubmit(template)">
+  <div class="mb-3">
+    <div>Employee ID</div>
+    <input type="text" class="form-control" [attr.disabled]="true" formControlName="id">
+  </div>
+  <div class="mb-3">
+    <div>Firstname
+      <span class="text-danger"
+        *ngIf="addEmployeeForm.get('firstName')?.errors && (addEmployeeForm.get('firstName')?.touched || ngForm.submitted)">
+      * required
+      </span>
+    </div>
+    <input type="text" class="form-control" required formControlName="firstName">
+  </div>
+  <div class="mb-3">
+    <div>Lastname
+      <span class="text-danger"
+        *ngIf="addEmployeeForm.get('lastName')?.errors && (addEmployeeForm.get('lastName')?.touched || ngForm.submitted)">
+      * required
+      </span>
+    </div>
+    <input type="text" class="form-control" required formControlName="lastName">
+  </div>
+  <div class="mb-3">
+    <div>Email
+      <span class="text-danger"
+        *ngIf="addEmployeeForm.get('email')?.errors?.required && (addEmployeeForm.get('email')?.touched || ngForm.submitted)">
+      * required
+      </span>
+      <span class="text-danger"
+        *ngIf="addEmployeeForm.get('email')?.errors?.email && (addEmployeeForm.get('email')?.touched || ngForm.submitted)">
+      * invalid email
+      </span>
+    </div>
+    <input type="text" class="form-control" required formControlName="email">
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!addEmployeeForm.valid">Submit</button>
+</form>
+<ng-template #template>
+  <div class="modal-header">
+    <h5 class="modal-title pull-left">Add employee</h5>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{addEmployeeMessage}}
+  </div>
+</ng-template>
